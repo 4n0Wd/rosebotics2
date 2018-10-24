@@ -16,9 +16,9 @@ def main():
 
 def run_tests():
     """ Runs various tests. """
-    run_test_drive_system()
+    # run_test_drive_system()
     # run_test_touch_sensor()
-    # run_test_color_sensor()
+    run_test_color_sensor()
 
 
 def run_test_drive_system():
@@ -88,6 +88,7 @@ def run_test_color_sensor():
     time.sleep(1)
     count = 1
     while True:
+        robot.color_sensor.wait_until_color_is('red')
         print("{:4}.".format(count),
               "Color sensor value/color/intensity is: ",
               "{:3} {:3} {:3}".format(robot.color_sensor.get_value()[0],

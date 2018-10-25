@@ -13,7 +13,22 @@ def main():
 
 def run_tests():
 
-    run_test_color()
+    # run_test_color()
+    run_test_drive()
+
+def run_test_drive():
+    robot = rb.Snatch3rRobot()
+
+    print()
+    print("Testing the  drive_system  of the robot.")
+    print("Move at (20, 50) - that is, veer left slowly")
+    side = 5
+    number_of_sides = 4
+    for k in range(4):
+        robot.drive_system.go_straight_inches(side, 50)
+        time.sleep(2)
+        robot.drive_system.turn_degrees(((number_of_sides-2) * 180) / number_of_sides)
+        time.sleep(1)
 
 
 def run_test_color():
@@ -27,6 +42,6 @@ def run_test_color():
     while True:
         robot.drive_system.start_moving(20, 20)
         if robot.color_sensor.get_color() != rb.Color.BLACK.value:
-            robot.drive_system.turn_degrees(3)
+            robot.drive_system.turn_degrees(3, 50)
 
 main()

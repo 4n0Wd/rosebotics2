@@ -13,6 +13,7 @@ def main():
     # run_test_touch_sensor()
     run_test_touch_sensor_10()
 
+
 def run_test_touch_sensor():
 
     robot = rb.Snatch3rRobot()

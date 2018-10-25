@@ -22,8 +22,7 @@ def run_test_touch_sensor():
     time.sleep(1)
     count = 1
     while True:
-        print(count,
-              ".Touch sensor value is: ", robot.touch_sensor.get_value())
+        print(count, ".Touch sensor value is: ", robot.touch_sensor.get_value())
         time.sleep(0.5)
         count = count + 1
 

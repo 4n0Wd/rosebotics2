@@ -25,8 +25,10 @@ def run_test_drive():
     side = 5
     number_of_sides = 4
     for k in range(4):
-        robot.drive_system.go_straight_inches(side)
+        robot.drive_system.go_straight_inches(side, 50)
+        time.sleep(2)
         robot.drive_system.turn_degrees(((number_of_sides-2) * 180) / number_of_sides)
+        time.sleep(1)
 
 
 def run_test_color():

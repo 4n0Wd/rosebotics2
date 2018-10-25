@@ -112,7 +112,8 @@ class DriveSystem(object):
         while True:
             self.left_wheel.start_spinning(duty_cycle_percent)
             self.right_wheel.start_spinning(duty_cycle_percent)
-            if self.left_wheel.get_degrees_spun() - count > inches * 3:
+            if self.left_wheel.get_degrees_spun() - count > inches * 89:
+                print(self.left_wheel.get_degrees_spun() - count)
                 self.stop_moving(stop_action)
                 break
 

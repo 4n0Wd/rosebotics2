@@ -15,6 +15,18 @@ def run_tests():
 
     run_test_color()
 
+def run_test_drive():
+    robot = rb.Snatch3rRobot()
+
+    print()
+    print("Testing the  drive_system  of the robot.")
+    print("Move at (20, 50) - that is, veer left slowly")
+    side = 5
+    number_of_sides = 4
+    for k in range(4):
+        robot.drive_system.go_straight_inches(side)
+        robot.drive_system.turn_degrees(((number_of_sides-2) * 180) / number_of_sides)
+
 
 def run_test_color():
     robot = rb.Snatch3rRobot()

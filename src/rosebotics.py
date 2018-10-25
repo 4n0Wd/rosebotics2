@@ -109,7 +109,8 @@ class DriveSystem(object):
         # TODO:   from wheel-degrees-spun to robot-inches-moved.
         # TODO:   Assume that the conversion is linear with respect to speed.
         while True:
-            self.start_moving(duty_cycle_percent)
+            self.left_wheel.start_spinning(duty_cycle_percent)
+            self.right_wheel.start_spinning(duty_cycle_percent)
             if self.left_wheel.get_degrees_spun() > inches * 3:
                 self.stop_moving(stop_action)
                 break

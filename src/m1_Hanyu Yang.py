@@ -10,5 +10,7 @@ import time
 def main():
     """ Runs YOUR specific part of the project """
 
+def run_tests():
+
 
 main()

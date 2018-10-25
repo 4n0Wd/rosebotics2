@@ -22,7 +22,7 @@ def run_test_drive():
     print()
     print("Testing the  drive_system  of the robot.")
     print("Move at (20, 50) - that is, veer left slowly")
-    side = 5
+    side = 10
     number_of_sides = 4
     for k in range(4):
         robot.drive_system.go_straight_inches(side, 50)

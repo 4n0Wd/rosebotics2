@@ -188,6 +188,7 @@ class TouchSensor(low_level_rb.TouchSensor):
         # TODO
 
 
+
 class Camera(object):
     """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
 

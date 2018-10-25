@@ -13,7 +13,8 @@ def main():
 
 def run_tests():
 
-    run_test_color()
+    # run_test_color()
+    run_test_drive()
 
 def run_test_drive():
     robot = rb.Snatch3rRobot()

@@ -268,7 +268,7 @@ class ColorSensor(low_level_rb.ColorSensor):
         The given color must be a Color (as defined above).
         """
         while True:
-            print(self.get_color())
+            # print(self.get_color())
             if self.get_color() == color:
                 break
 

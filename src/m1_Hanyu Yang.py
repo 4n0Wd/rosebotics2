@@ -13,8 +13,9 @@ def main():
 
 
 def run_tests():
-    run_test_turning(90)
-    # run_test_drive_polygon(10, 4)
+    # run_test_turning(90)
+    # run_test_drive_polygon(7, 5)
+    run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
 
 
@@ -42,9 +43,20 @@ def run_test_drive_polygon(side, number_of_sides):
 
     for k in range(number_of_sides):
         robot.drive_system.go_straight_inches(side, 50)
-        time.sleep(1)
-        robot.drive_system.turn_degrees(((number_of_sides-2) * 180) / number_of_sides)
-        time.sleep(1)
+        time.sleep(0.3)
+        robot.drive_system.spin_in_place_degrees(180-(((number_of_sides-2) * 180) / number_of_sides))
+        time.sleep(0.3)
+
+
+def run_test_wait_color(color):
+    robot = rb.Snatch3rRobot()
+
+    print("Testing the color sensor.")
+    print("The robot will stop until it detects", color)
+
+    robot.drive_system.start_moving(50)
+    robot.color_sensor.wait_until_color_is(color)
+    robot.drive_system.stop_moving()
 
 
 def run_test_moving_loop():

@@ -22,10 +22,11 @@ def run_test_drive_polygon(side, number_of_sides):
 
     print()
     print("Testing the  drive_system  of the robot.")
-    print("Move at (20, 50) - that is, veer left slowly")
-    for k in range(4):
+    print("The robot is drawing a polygon.")
+
+    for k in range(number_of_sides):
         robot.drive_system.go_straight_inches(side, 50)
-        time.sleep(2)
+        time.sleep(1)
         robot.drive_system.turn_degrees(((number_of_sides-2) * 180) / number_of_sides)
         time.sleep(1)
 

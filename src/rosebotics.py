@@ -54,7 +54,7 @@ class Snatch3rRobot(object):
 class DriveSystem(object):
     """
     A class for driving (moving) the robot.
-    Primary authors:  entire team plus PUT_YOUR_NAME_HERE.
+    Primary authors:  entire team plus Michelle Zhou & Hanyu Yang.
     """
 
     def __init__(self,
@@ -129,7 +129,22 @@ class DriveSystem(object):
         # DONE: Do a few experiments to determine the constant that converts
         # DONE:   from wheel-degrees-spun to robot-degrees-spun.
         # DONE:   Assume that the conversion is linear with respect to speed.
-
+        if degrees > 0:
+            count = self.left_wheel.get_degrees_spun()
+            while True:
+                self.left_wheel.start_spinning(duty_cycle_percent)
+                self.right_wheel.start_spinning(-duty_cycle_percent)
+                if abs(self.left_wheel.get_degrees_spun() - count) > abs(degrees) * 4.8:
+                    self.stop_moving(stop_action)
+                    break
+        else:
+            count = self.left_wheel.get_degrees_spun()
+            while True:
+                self.left_wheel.start_spinning(-duty_cycle_percent)
+                self.right_wheel.start_spinning(duty_cycle_percent)
+                if abs(self.left_wheel.get_degrees_spun() - count) > abs(degrees) * 4.8:
+                    self.stop_moving(stop_action)
+                    break
 
     def turn_degrees(self,
                      degrees,
@@ -144,15 +159,21 @@ class DriveSystem(object):
         # DONE: Do a few experiments to determine the constant that converts
         # DONE:   from wheel-degrees-spun to robot-degrees-turned.
         # DONE:   Assume that the conversion is linear with respect to speed.
+        if degrees > 0:
+            count = self.left_wheel.get_degrees_spun()
+            while True:
+                self.left_wheel.start_spinning(duty_cycle_percent)
+                if abs(self.left_wheel.get_degrees_spun() - count) > abs(degrees) * 11:
+                    self.stop_moving(stop_action)
+                    break
 
-        count = self.left_wheel.get_degrees_spun()
-        while True:
-            self.left_wheel.start_spinning(duty_cycle_percent)
-            self.right_wheel.start_spinning(-duty_cycle_percent)
-            if self.left_wheel.get_degrees_spun() - count > degrees * 4.8:
-                self.stop_moving(stop_action)
-                break
-
+        else:
+            count = self.right_wheel.get_degrees_spun()
+            while True:
+                self.right_wheel.start_spinning(duty_cycle_percent)
+                if abs(self.right_wheel.get_degrees_spun() - count) > abs(degrees) * 11:
+                    self.stop_moving(stop_action)
+                    break
 
 
 # class ArmAndClaw(object):
@@ -189,9 +210,8 @@ class DriveSystem(object):
 #         """ Spin the arm's motor until it reaches the given position. """
 #         #
 
-
 class TouchSensor(low_level_rb.TouchSensor):
-    """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
+    """ Primary author of this class:  Brandon Hao. """
 
     def __init__(self, port=ev3.INPUT_1):
         super().__init__(port)
@@ -216,7 +236,7 @@ class Camera(object):
 
 
 class ColorSensor(low_level_rb.ColorSensor):
-    """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
+    """ Primary author of this class:  Hanyu Yang. """
 
     def __init__(self, port=ev3.INPUT_3):
         super().__init__(port)

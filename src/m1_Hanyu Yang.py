@@ -13,8 +13,24 @@ def main():
 
 
 def run_tests():
-    run_test_drive_polygon(10, 4)
-    # run_test_color()
+    run_test_turning(90)
+    # run_test_drive_polygon(10, 4)
+    # run_test_moving_loop()
+
+
+def run_test_turning(angle):
+    robot = rb.Snatch3rRobot()
+
+    print("Testing the spinning methods.")
+    print("The robot is turning.")
+
+    robot.drive_system.spin_in_place_degrees(angle)
+    time.sleep(1)
+    robot.drive_system.spin_in_place_degrees(-angle)
+    time.sleep(1)
+    robot.drive_system.turn_degrees(angle)
+    time.sleep(1)
+    robot.drive_system.turn_degrees(-angle)
 
 
 def run_test_drive_polygon(side, number_of_sides):
@@ -31,7 +47,7 @@ def run_test_drive_polygon(side, number_of_sides):
         time.sleep(1)
 
 
-def run_test_color():
+def run_test_moving_loop():
     robot = rb.Snatch3rRobot()
 
     print("Testing the  color_sensor  of the robot.")

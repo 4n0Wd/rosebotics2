@@ -3,7 +3,7 @@
   Fall term, 2018-2019.
 """
 
-import rosebotics as rb
+import rosebotics_new as rb
 import ev3dev.ev3 as ev3
 import time
 
@@ -15,10 +15,12 @@ def main():
 
 def run_tests():
     # run_test_turning(90)
-    # run_test_drive_polygon(7, 5)
+    run_test_drive_polygon(9, 5)
     # run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
-    run_test_sounds()
+    # run_test_sounds()
+    # run_test_camera()
+    # run_test_arms_and_claws()
 
 
 def run_test_turning(angle):
@@ -76,15 +78,20 @@ def run_test_moving_loop():
 
 
 def run_test_sounds():
-    ev3.Sound.tone(440, 1500)
-    time.sleep(1)
-    ev3.Sound.tone(500, 1500)
-
+    ev3.Sound.tone(440, 500)
+    time.sleep(0.5)
+    ev3.Sound.tone(500, 500)
+    time.sleep(0.5)
+    ev3.Sound.tone(560, 500)
 
 
 def run_test_camera():
     robot = rb.Snatch3rRobot()
-    camera = rb.Camera()
+    print(robot.camera.get_biggest_blob())
+
+
+def run_test_arms_and_claws():
+    robot = rb.Snatch3rRobot()
 
 
 

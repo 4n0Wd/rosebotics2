@@ -4,6 +4,7 @@
 """
 
 import rosebotics as rb
+import ev3dev.ev3 as ev3
 import time
 
 
@@ -15,8 +16,9 @@ def main():
 def run_tests():
     # run_test_turning(90)
     # run_test_drive_polygon(7, 5)
-    run_test_wait_color(rb.Color.RED.value)
+    # run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
+    run_test_sounds()
 
 
 def run_test_turning(angle):
@@ -71,6 +73,20 @@ def run_test_moving_loop():
         robot.drive_system.start_moving(20, 20)
         if robot.color_sensor.get_color() != rb.Color.BLACK.value:
             robot.drive_system.turn_degrees(3, 50)
+
+
+def run_test_sounds():
+    ev3.Sound.tone(440, 1500)
+    time.sleep(1)
+    ev3.Sound.tone(500, 1500)
+
+
+
+def run_test_camera():
+    robot = rb.Snatch3rRobot()
+    camera = rb.Camera()
+
+
 
 
 main()

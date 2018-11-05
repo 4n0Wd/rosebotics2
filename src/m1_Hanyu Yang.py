@@ -92,7 +92,8 @@ def run_test_camera():
 
 def run_test_arm_and_claw():
     robot = rb.Snatch3rRobot()
-
+    arm = rb.ArmAndClaw(robot.touch_sensor)
+    arm.calibrate()
 
 
 

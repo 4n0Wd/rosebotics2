@@ -15,12 +15,12 @@ def main():
 
 def run_tests():
     # run_test_turning(90)
-    run_test_drive_polygon(9, 5)
+    # run_test_drive_polygon(9, 5)
     # run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
     # run_test_sounds()
     # run_test_camera()
-    # run_test_arm_and_claw()
+    run_test_arm_and_claw()
 
 
 def run_test_turning(angle):
@@ -85,9 +85,9 @@ def run_test_sounds():
     ev3.Sound.tone(560, 500)
 
 
-def run_test_camera():
+'''def run_test_camera():
     robot = rb.Snatch3rRobot()
-    print(robot.camera.get_biggest_blob())
+    print(robot.camera.get_biggest_blob())'''
 
 
 def run_test_arm_and_claw():

@@ -130,7 +130,7 @@ class Snatch3rRobot(object):
         """
         self.touch_sensor = TouchSensor(touch_sensor_port)
         self.color_sensor = ColorSensor(color_sensor_port)
-        self.camera = Camera(camera_port)
+        '''self.camera = Camera(camera_port)'''
 
         self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
         # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
@@ -412,7 +412,7 @@ class ColorSensor(low_level_rb.ColorSensor):
                     break
 
 
-class Camera(object):
+'''class Camera(object):
     """
     A class for a Pixy camera.
     Use the   PixyMon    program to initialize the camera's firmware.
@@ -463,7 +463,7 @@ class Camera(object):
         return Blob(Point(self.low_level_camera.value(1),
                           self.low_level_camera.value(2)),
                     self.low_level_camera.value(3),
-                    self.low_level_camera.value(4))
+                    self.low_level_camera.value(4))'''
 
 
 class Point(object):
@@ -735,8 +735,14 @@ class ArmAndClaw(object):
         """
         # DONE: Do this as STEP 2 of implementing this class.
         while True:
-            self.motor.start_spinning(30)
+            self.motor.start_spinning(100)
             if self.touch_sensor.get_value() == 1:
+                self.motor.stop_spinning()
+                break
+        value = self.motor.get_degrees_spun()
+        while True:
+            self.motor.start_spinning(-100)
+            if abs(self.motor.get_degrees_spun() - value) > 5112:
                 self.motor.stop_spinning()
                 break
 

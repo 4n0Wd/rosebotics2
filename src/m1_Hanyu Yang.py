@@ -20,7 +20,7 @@ def run_tests():
     # run_test_moving_loop()
     # run_test_sounds()
     # run_test_camera()
-    # run_test_arms_and_claws()
+    # run_test_arm_and_claw()
 
 
 def run_test_turning(angle):
@@ -90,7 +90,7 @@ def run_test_camera():
     print(robot.camera.get_biggest_blob())
 
 
-def run_test_arms_and_claws():
+def run_test_arm_and_claw():
     robot = rb.Snatch3rRobot()
 
 

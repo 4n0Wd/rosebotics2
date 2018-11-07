@@ -73,12 +73,21 @@ def setup_gui(root_window, mqtt_client):
 
     speed_entry_box = ttk.Entry(frame)
     go_forward_button = ttk.Button(frame, text="Go forward")
+    go_backward_button = ttk.Button(frame, text="Go backward")
+    arm_position_entry_box = ttk.Entry(frame)
+    arm_to_position = ttk.Button(frame, text="Set arm to position")
 
     speed_entry_box.grid()
     go_forward_button.grid()
+    go_backward_button.grid()
+    arm_position_entry_box.grid()
+    arm_to_position.grid()
 
     go_forward_button['command'] = \
         lambda: handle_go_forward(speed_entry_box, mqtt_client)
+    go_backward_button['command'] = \
+        lambda: handle_go_backward(speed_entry_box, mqtt_client)
+    arm_to_position['command'] = lambda: handle_arm_to_position(arm_position_entry_box, mqtt_client)
 
 
 def handle_go_forward(entry_box, mqtt_client):
@@ -95,6 +104,17 @@ def handle_go_forward(entry_box, mqtt_client):
     print('Sending the go_forward message with speed', speed_string)
     mqtt_client.send_message('go_forward', [speed_string])
 
+
+def handle_go_backward(entry_box, mqtt_client):
+    speed_string = entry_box.get()
+    print('Sending the go_backward message with speed', speed_string)
+    mqtt_client.send_message('go_backward', [speed_string])
+
+
+def handle_arm_to_position(entry_box, mqtt_client):
+    position = int(entry_box.get())
+    print('Setting arm to position:', position)
+    mqtt_client.send_message('arm_to_position', [position])
 
     # --------------------------------------------------------------------------
     # TODO: 7. For this function to tell the robot what to do, it needs

@@ -72,4 +72,13 @@ class RemoteControlEtc(object):
         speed = int(speed_string)
         self.robot.drive_system.start_moving(speed, speed)
 
+    def go_backward(self, speed_string):
+        print('Going backward at', speed_string)
+        speed = int(speed_string)
+        self.robot.drive_system.start_moving(-speed, -speed)
+
+    def arm_to_position(self, position):
+        print('Setting arm to position:', position)
+        self.robot.arm.move_arm_to_position(position)
+
 main()

@@ -412,7 +412,7 @@ class ColorSensor(low_level_rb.ColorSensor):
                     break
 
 
-'''class Camera(object):
+class Camera(object):
     """
     A class for a Pixy camera.
     Use the   PixyMon    program to initialize the camera's firmware.
@@ -463,7 +463,7 @@ class ColorSensor(low_level_rb.ColorSensor):
         return Blob(Point(self.low_level_camera.value(1),
                           self.low_level_camera.value(2)),
                     self.low_level_camera.value(3),
-                    self.low_level_camera.value(4))'''
+                    self.low_level_camera.value(4))
 
 
 class Point(object):
@@ -725,6 +725,7 @@ class ArmAndClaw(object):
         # At the DOWN position, the robot fits in its plastic bin,
         # so we start with the ArmAndClaw in that position.
         self.calibrate()
+        self.position = 0
 
     def calibrate(self):
         """
@@ -745,6 +746,7 @@ class ArmAndClaw(object):
             if abs(self.motor.get_degrees_spun() - value) > 5112:
                 self.motor.stop_spinning()
                 break
+        self.position = 0
 
     def raise_arm_and_close_claw(self):
         """
@@ -753,11 +755,25 @@ class ArmAndClaw(object):
         Positive speeds make the arm go UP; negative speeds make it go DOWN.
         Stop when the touch sensor is pressed.
         """
-        # TODO: Do this as STEP 1 of implementing this class.
+        # DONE: Do this as STEP 1 of implementing this class.
+        while True:
+            self.motor.start_spinning(100)
+            if self.touch_sensor.get_value() == 1:
+                self.motor.stop_spinning()
+                break
+        self.position = 360
 
     def move_arm_to_position(self, position):
         """
         Spin the arm's motor until it reaches the given position.
         Move at a reasonable speed.
         """
-        # TODO: Do this as STEP 3 of implementing this class.
+        # DONE: Do this as STEP 3 of implementing this class.
+        sign = abs(position-self.position)/(position-self.position)
+        value = self.motor.get_degrees_spun()
+        while True:
+            self.motor.start_spinning(sign * 100)
+            if abs(self.motor.get_degrees_spun()-value) > abs(position-self.position) * 14.2:
+                self.motor.stop_spinning()
+                self.position = position
+                break

@@ -92,9 +92,12 @@ def run_test_sounds():
 
 def run_test_arm_and_claw():
     robot = rb.Snatch3rRobot()
-    arm = rb.ArmAndClaw(robot.touch_sensor)
-    arm.calibrate()
-
+    robot.arm.raise_arm_and_close_claw()
+    robot.arm.move_arm_to_position(200)
+    time.sleep(1)
+    robot.arm.move_arm_to_position(350)
+    time.sleep(1)
+    robot.arm.move_arm_to_position(0)
 
 
 main()

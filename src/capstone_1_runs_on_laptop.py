@@ -54,11 +54,14 @@ def main():
     root = tkinter.Tk()
     setup_gui(root)
 
+    mqtt_client = com.MqttClient()
+    mqtt_client.connect_to_ev3()
+
     root.mainloop()
     # --------------------------------------------------------------------------
-    # TODO: 5. Add code above that constructs a   com.MqttClient   that will
-    # TODO:    be used to send commands to the robot.  Connect it to this pc.
-    # TODO:    Test.  When OK, delete this TODO.
+    # DONE: 5. Add code above that constructs a   com.MqttClient   that will
+    # DONE:    be used to send commands to the robot.  Connect it to ev3.
+    # DONE:    Test.  When OK, delete this TO_DO.
     # --------------------------------------------------------------------------
 
 

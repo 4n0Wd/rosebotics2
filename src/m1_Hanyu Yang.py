@@ -20,8 +20,8 @@ def run_tests():
     # run_test_moving_loop()
     # run_test_sounds()
     # run_test_camera()
-    run_test_arm_and_claw()
-
+    # run_test_arm_and_claw()
+    run_test_infrared_sensor()
 
 def run_test_turning(angle):
     robot = rb.Snatch3rRobot()
@@ -99,5 +99,13 @@ def run_test_arm_and_claw():
     time.sleep(1)
     robot.arm.move_arm_to_position(0)
 
+
+def run_test_infrared_sensor():
+    robot = rb.Snatch3rRobot()
+    while True:
+        if 9 < robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 15:
+            run_test_sounds()
+        if robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 3:
+            break
 
 main()

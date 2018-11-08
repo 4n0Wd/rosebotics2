@@ -14,15 +14,24 @@ def main():
 
 
 def run_tests():
+    run_test_drive_system(20)
     # run_test_turning(90)
-    # run_test_drive_polygon(9, 5)
     # run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
-    # run_test_sounds()
-    # run_test_camera()
+    # run_test_drive_polygon(9, 5)
     # run_test_arm_and_claw()
     # run_test_infrared_sensor()
-    run_test_beacon_sensor()
+    # run_test_sounds()
+    # run_test_camera()
+    # run_test_beacon_sensor()
+
+
+def run_test_drive_system(inches):
+    robot = rb.Snatch3rRobot()
+    robot.drive_system.go_straight_inches(inches)
+    time.sleep(1)
+    robot.drive_system.go_straight_inches(-inches)
+
 
 def run_test_turning(angle):
     robot = rb.Snatch3rRobot()
@@ -114,9 +123,12 @@ def run_test_beacon_sensor():
     robot = rb.Snatch3rRobot()
     while True:
         if robot.beacon_button_sensor.is_top_red_button_pressed():
-            robot.drive_system.go_straight_inches(1)
+            robot.drive_system.go_straight_inches(10)
         if robot.beacon_button_sensor.is_bottom_red_button_pressed():
-            robot.drive_system.go_straight_inches(-1)
+            robot.drive_system.go_straight_inches(-10)
+        if robot.beacon_button_sensor.is_top_blue_button_pressed():
+            robot.drive_system.stop_moving()
+            break
         time.sleep(0.01)
 
 

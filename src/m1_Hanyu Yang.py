@@ -17,13 +17,13 @@ def run_tests():
     # run_test_drive_system(20)
     # run_test_turning(90)
     # run_test_wait_color(rb.Color.RED.value)
-    # run_test_moving_loop()
+    run_test_moving_loop()
     # run_test_drive_polygon(9, 5)
     # run_test_arm_and_claw()
     # run_test_infrared_sensor()
     # run_test_sounds()
     # run_test_camera()
-    run_test_beacon_sensor()
+    # run_test_beacon_sensor()
 
 
 def run_test_drive_system(inches):

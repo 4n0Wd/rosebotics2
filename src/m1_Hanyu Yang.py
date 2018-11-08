@@ -14,7 +14,7 @@ def main():
 
 
 def run_tests():
-    run_test_drive_system(20)
+    # run_test_drive_system(20)
     # run_test_turning(90)
     # run_test_wait_color(rb.Color.RED.value)
     # run_test_moving_loop()
@@ -23,7 +23,7 @@ def run_tests():
     # run_test_infrared_sensor()
     # run_test_sounds()
     # run_test_camera()
-    # run_test_beacon_sensor()
+    run_test_beacon_sensor()
 
 
 def run_test_drive_system(inches):
@@ -80,11 +80,10 @@ def run_test_moving_loop():
     print("Repeatedly move the robot to different surfaces.")
     print("Press Control-C when you are ready to stop testing.")
 
-    time.sleep(1)
     while True:
-        robot.drive_system.start_moving(20, 20)
+        robot.drive_system.start_moving(50, 50)
         if robot.color_sensor.get_color() != rb.Color.BLACK.value:
-            robot.drive_system.turn_degrees(3, 50)
+            robot.drive_system.turn_degrees(-3)
 
 
 def run_test_sounds():

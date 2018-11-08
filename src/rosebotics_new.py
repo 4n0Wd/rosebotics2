@@ -139,7 +139,7 @@ class Snatch3rRobot(object):
         self.brick_button_sensor = BrickButtonSensor()
 
         self.drive_system = DriveSystem(left_wheel_port, right_wheel_port)
-        self.arm = ArmAndClaw(self.touch_sensor, arm_port)
+        # self.arm = ArmAndClaw(self.touch_sensor, arm_port)
 
 
 class DriveSystem(object):
@@ -216,13 +216,13 @@ class DriveSystem(object):
         # DONE: Don't forget that the Wheel object's position begins wherever
         # DONE:   it last was, not necessarily 0.
 
+        sign = abs(inches)/inches
         count = self.left_wheel.get_degrees_spun()
         while True:
-            self.left_wheel.start_spinning(duty_cycle_percent)
-            self.right_wheel.start_spinning(duty_cycle_percent)
-            if self.left_wheel.get_degrees_spun() - count > inches * 89:
-                self.left_wheel.stop_spinning(stop_action)
-                self.right_wheel.stop_spinning(stop_action)
+            self.left_wheel.start_spinning(sign * duty_cycle_percent)
+            self.right_wheel.start_spinning(sign * duty_cycle_percent)
+            if abs(self.left_wheel.get_degrees_spun() - count) > abs(inches) * 89:
+                self.stop_moving()
                 break
 
     def spin_in_place_degrees(self,

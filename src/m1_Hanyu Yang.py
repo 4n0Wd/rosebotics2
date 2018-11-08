@@ -114,7 +114,9 @@ def run_test_beacon_sensor():
     robot = rb.Snatch3rRobot()
     while True:
         if robot.beacon_button_sensor.is_top_red_button_pressed():
-            run_test_sounds()
+            robot.drive_system.go_straight_inches(1)
+        if robot.beacon_button_sensor.is_bottom_red_button_pressed():
+            robot.drive_system.go_straight_inches(-1)
         time.sleep(0.01)
 
 

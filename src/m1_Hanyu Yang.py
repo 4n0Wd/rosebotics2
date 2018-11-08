@@ -21,7 +21,8 @@ def run_tests():
     # run_test_sounds()
     # run_test_camera()
     # run_test_arm_and_claw()
-    run_test_infrared_sensor()
+    # run_test_infrared_sensor()
+    run_test_beacon_sensor()
 
 def run_test_turning(angle):
     robot = rb.Snatch3rRobot()
@@ -103,9 +104,19 @@ def run_test_arm_and_claw():
 def run_test_infrared_sensor():
     robot = rb.Snatch3rRobot()
     while True:
-        if 9 < robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 15:
+        if 30 < robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 50:
             run_test_sounds()
-        if robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 3:
+        elif robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 30:
             break
+
+
+def run_test_beacon_sensor():
+    robot = rb.Snatch3rRobot()
+    while True:
+        if robot.beacon_button_sensor.is_top_red_button_pressed():
+            run_test_sounds()
+        time.sleep(0.01)
+
+
 
 main()

@@ -19,7 +19,7 @@ def run_test_wait_color(color):
     print("Testing the color sensor.")
     print("The robot will stop until it detects", color)
 
-    robot.drive_system.start_moving(50)
+    robot.drive_system.start_moving(50, 50)
     robot.color_sensor.wait_until_color_is(color)
     robot.drive_system.stop_moving()
 

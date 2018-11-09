@@ -57,9 +57,9 @@ def run_test_beacon_sensor():
     while True:
 
         if robot.beacon_button_sensor.is_top_red_button_pressed():
-            robot.drive_system.go_straight_inches(10)
+            robot.drive_system.go_straight_inches(5)
         if robot.beacon_button_sensor.is_bottom_red_button_pressed():
-            robot.drive_system.go_straight_inches(-10)
+            robot.drive_system.go_straight_inches(-5)
 
         time.sleep(0.01)
 

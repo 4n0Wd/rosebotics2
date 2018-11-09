@@ -84,9 +84,10 @@ def run_test_moving_loop():
     print("Press Control-C when you are ready to stop testing.")
 
     while True:
-        robot.drive_system.start_moving(50, 50)
+        robot.drive_system.start_moving(20, 20)
+        print(robot.color_sensor.get_color())
         if robot.color_sensor.get_color() != rb.Color.BLACK.value:
-            robot.drive_system.turn_degrees(-3)
+            robot.drive_system.turn_degrees(-5)
 
 
 def run_test_sounds():

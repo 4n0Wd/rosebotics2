@@ -13,8 +13,8 @@ def main():
 
     # run_test_touch_sensor()
     # run_test_touch_sensor_10()
-    # run_test_beacon_sensor()
-    run_test_arm_and_claw()
+    run_test_beacon_sensor()
+    # run_test_arm_and_claw()
 
 
 def run_test_touch_sensor():
@@ -67,10 +67,13 @@ def run_test_beacon_sensor():
 def run_test_arm_and_claw():
     robot = rb.Snatch3rRobot()
     robot.arm.raise_arm_and_close_claw()
+    
     robot.arm.move_arm_to_position(200)
-    time.sleep(1)
+    time.sleep(0.5)
+
     robot.arm.move_arm_to_position(350)
-    time.sleep(1)
+    time.sleep(0.5)
+
     robot.arm.move_arm_to_position(0)
 
 

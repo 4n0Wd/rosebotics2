@@ -17,19 +17,22 @@ def run_tests():
     # run_test_drive_system(20)
     # run_test_turning(90)
     # run_test_wait_color(rb.Color.RED.value)
-    run_test_moving_loop()
+    # run_test_moving_loop()
     # run_test_drive_polygon(9, 5)
     # run_test_arm_and_claw()
-    # run_test_infrared_sensor()
+    run_test_infrared_sensor()
     # run_test_sounds()
     # run_test_camera()
     # run_test_beacon_sensor()
 
 
 def run_test_drive_system(inches):
+    print('test')
     robot = rb.Snatch3rRobot()
+    print('test2')
     robot.drive_system.go_straight_inches(inches)
     time.sleep(1)
+    print('test3')
     robot.drive_system.go_straight_inches(-inches)
 
 
@@ -112,9 +115,9 @@ def run_test_arm_and_claw():
 def run_test_infrared_sensor():
     robot = rb.Snatch3rRobot()
     while True:
-        if 30 < robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 50:
+        if 15 < robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 50:
             run_test_sounds()
-        elif robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 30:
+        elif robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 15:
             break
 
 

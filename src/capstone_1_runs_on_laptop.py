@@ -93,6 +93,9 @@ def setup_gui(root_window, mqtt_client):
 def handle_go_forward(entry_box, mqtt_client):
     """
     Tells the robot to go forward at the speed specified in the given entry box.
+    To this point, I think I have learnt the skills of communication with my professor and other students, so that I can
+    more easily solve the problem I don't understand.
+    I haven't get used to check my mailbox constantly, so I sometimes miss instruction from the professor.
     """
     # --------------------------------------------------------------------------
     # TODO: 6. This function needs the entry box in which the user enters

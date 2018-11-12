@@ -10,7 +10,8 @@ import time
 def main():
     """ Runs YOUR specific part of the project """
     # run_test_wait_color(rb.Color.RED.value)
-    run_test_moving_loop()
+    # run_test_moving_loop()
+    run_test_camera()
 
 
 def run_test_wait_color(color):
@@ -35,5 +36,12 @@ def run_test_moving_loop():
         robot.drive_system.start_moving(50, 50)
         if robot.color_sensor.get_color() != rb.Color.BLACK.value:
             robot.drive_system.turn_degrees(-3)
+
+
+def run_test_camera():
+    robot = rb.Snatch3rRobot()
+    while True:
+        print(robot.camera.get_biggest_blob().get_area())
+
 
 main()

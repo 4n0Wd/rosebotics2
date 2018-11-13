@@ -23,12 +23,11 @@ def grab_things():
 
 def gun_shots():
     for k in range(3):
-
         ev3.Sound.play('ak47-1.wav')
         time.sleep(1.3)
-
     ev3.Sound.play('ak47_clipout.wav')
     time.sleep(0.8)
     ev3.Sound.play('ak47_clipin.wav')
+
 
 main()

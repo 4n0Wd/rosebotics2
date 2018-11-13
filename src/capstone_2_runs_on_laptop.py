@@ -5,10 +5,10 @@ Mini-application:  Buttons on a Tkinter GUI tell the robot to:
 This module runs on your LAPTOP.
 It uses MQTT to SEND information to a program running on the ROBOT.
 
-Authors:  David Mutchler, his colleagues, and PUT_YOUR_NAME_HERE.
+Authors:  David Mutchler, his colleagues, and Hanyu Yang.
 """
 # ------------------------------------------------------------------------------
-# TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.  Then delete this TODO.
+# DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.  Then delete this TODO.
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
@@ -52,7 +52,11 @@ import mqtt_remote_method_calls as com
 def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
-    setup_gui(root)
+
+    mqtt_client = com.MqttClient()
+    mqtt_client.connect_to_ev3()
+
+    setup_gui(root, mqtt_client)
 
     root.mainloop()
     # --------------------------------------------------------------------------
@@ -62,52 +66,111 @@ def main():
     # --------------------------------------------------------------------------
 
 
-def setup_gui(root_window):
+def setup_gui(root_window, mqtt_client):
     """ Constructs and sets up widgets on the given window. """
     frame = ttk.Frame(root_window, padding=10)
     frame.grid()
 
-    speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Go forward")
+    tone_entry_box = ttk.Entry(frame)
+    c_button = ttk.Button(frame, text="C")
+    csh_button = ttk.Button(frame, text="C#")
+    d_button = ttk.Button(frame, text="D")
+    dsh_button = ttk.Button(frame, text="D#")
+    e_button = ttk.Button(frame, text="E")
+    f_button = ttk.Button(frame, text="F")
+    fsh_button = ttk.Button(frame, text="F#")
+    g_button = ttk.Button(frame, text="G")
+    gsh_button = ttk.Button(frame, text="G#")
+    a_button = ttk.Button(frame, text="A")
+    ash_button = ttk.Button(frame, text="A#")
+    b_button = ttk.Button(frame, text="B")
 
-    speed_entry_box.grid()
-    go_forward_button.grid()
+    tone_entry_box.grid()
+    c_button.grid()
+    csh_button.grid()
+    d_button.grid()
+    dsh_button.grid()
+    e_button.grid()
+    f_button.grid()
+    fsh_button.grid()
+    g_button.grid()
+    gsh_button.grid()
+    a_button.grid()
+    ash_button.grid()
+    b_button.grid()
 
-    go_forward_button['command'] = \
-        lambda: handle_go_forward()
+    c_button['command'] = lambda: play_c(tone_entry_box, mqtt_client)
+    csh_button['command'] = lambda: play_csh(tone_entry_box, mqtt_client)
+    d_button['command'] = lambda: play_d(tone_entry_box, mqtt_client)
+    dsh_button['command'] = lambda: play_dsh(tone_entry_box, mqtt_client)
+    e_button['command'] = lambda: play_e(tone_entry_box, mqtt_client)
+    f_button['command'] = lambda: play_f(tone_entry_box, mqtt_client)
+    fsh_button['command'] = lambda: play_fsh(tone_entry_box, mqtt_client)
+    g_button['command'] = lambda: play_g(tone_entry_box, mqtt_client)
+    gsh_button['command'] = lambda: play_gsh(tone_entry_box, mqtt_client)
+    a_button['command'] = lambda: play_a(tone_entry_box, mqtt_client)
+    ash_button['command'] = lambda: play_ash(tone_entry_box, mqtt_client)
+    b_button['command'] = lambda: play_b(tone_entry_box, mqtt_client)
 
 
-def handle_go_forward():
-    """
-    Tells the robot to go forward at the speed specified in the given entry box.
-    """
-    # --------------------------------------------------------------------------
-    # TODO: 6. This function needs the entry box in which the user enters
-    # TODO:    the speed at which the robot should move.  Make the 2 changes
-    # TODO:    necessary for the entry_box constructed in  setup_gui
-    # TODO:    to make its way to this function.  When done, delete this TODO.
-    # --------------------------------------------------------------------------
+def play_c(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_c', [degree])
 
-    # --------------------------------------------------------------------------
-    # TODO: 7. For this function to tell the robot what to do, it needs
-    # TODO:    the MQTT client constructed in main.  Make the 4 changes
-    # TODO:    necessary for that object to make its way to this function.
-    # TODO:    When done, delete this TODO.
-    # --------------------------------------------------------------------------
 
-    # --------------------------------------------------------------------------
-    # TODO: 8. Add the single line of code needed to get the string that is
-    # TODO:    currently in the entry box.
-    # TODO:
-    # TODO:    Then add the single line of code needed to "call" a method on the
-    # TODO:    LISTENER that runs on the ROBOT, where that LISTENER is the
-    # TODO:    "delegate" object that is constructed when the ROBOT's code
-    # TODO:    runs on the ROBOT.  Send to the delegate the speed to use
-    # TODO:    plus a method name that you will implement in the DELEGATE's
-    # TODO:    class in the module that runs on the ROBOT.
-    # TODO:
-    # TODO:    Test by using a PRINT statement.  When done, delete this TODO.
-    # --------------------------------------------------------------------------
+def play_csh(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_csh', [degree])
+
+
+def play_d(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_d', [degree])
+
+
+def play_dsh(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_dsh', [degree])
+
+
+def play_e(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_e', [degree])
+
+
+def play_f(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_f', [degree])
+
+
+def play_fsh(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_fsh', [degree])
+
+
+def play_g(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_g', [degree])
+
+
+def play_gsh(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_gsh', [degree])
+
+
+def play_a(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_a', [degree])
+
+
+def play_ash(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_ash', [degree])
+
+
+def play_b(entry_box, mqtt_client):
+    degree = int(entry_box.get())
+    mqtt_client.send_message('tone_b', [degree])
 
 
 main()

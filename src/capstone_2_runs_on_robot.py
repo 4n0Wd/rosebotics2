@@ -29,13 +29,15 @@ def main():
     # --------------------------------------------------------------------------
     # TODO: 3. Construct a Snatch3rRobot.  Test.  When OK, delete this TODO.
     # --------------------------------------------------------------------------
-
+    robot = rb.Snatch3rRobot()
     # --------------------------------------------------------------------------
     # TODO: 4. Add code that constructs a   com.MqttClient   that will
     # TODO:    be used to receive commands sent by the laptop.
     # TODO:    Connect it to this robot.  Test.  When OK, delete this TODO.
     # --------------------------------------------------------------------------
-
+    rc = RemoteControlEtc(robot)
+    mqtt_client = com.MqttClient(rc)
+    mqtt_client.connect_to_pc()
     # --------------------------------------------------------------------------
     # TODO: 5. Add a class for your "delegate" object that will handle messages
     # TODO:    sent from the laptop.  Construct an instance of the class and
@@ -58,5 +60,61 @@ def main():
         # ----------------------------------------------------------------------
         time.sleep(0.01)  # For the delegate to do its work
 
+
+class RemoteControlEtc(object):
+    def __init__(self, robot):
+        """
+        Stores the robot
+            :type robot: rb.Snatch3rRobot
+        """
+        self.robot = robot
+
+    def tone_c(self, degree):
+        tone = 16.401 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_csh(self, degree):
+        tone = 17.406 * (2.718 ** (0.6922 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_d(self, degree):
+        tone = 18.403 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_dsh(self, degree):
+        tone = 19.445 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_e(self, degree):
+        tone = 20.602 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_f(self, degree):
+        tone = 21.827 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_fsh(self, degree):
+        tone = 23.125 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_g(self, degree):
+        tone = 24.500 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_gsh(self, degree):
+        tone = 25.957 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_a(self, degree):
+        tone = 27.500 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_ash(self, degree):
+        tone = 29.135 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
+
+    def tone_b(self, degree):
+        tone = 30.895 * (2.718 ** (0.6926 * degree))
+        ev3.Sound.tone(tone, 200)
 
 main()

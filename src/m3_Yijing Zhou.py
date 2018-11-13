@@ -4,6 +4,7 @@
 """
 
 import rosebotics_new as rb
+import ev3dev.ev3 as ev3
 import time
 
 
@@ -40,8 +41,12 @@ def run_test_moving_loop():
 
 def run_test_camera():
     robot = rb.Snatch3rRobot()
+    robot.camera.set_signature('SIG2')
     while True:
-        print(robot.camera.get_biggest_blob().get_area())
+
+        if robot.camera.get_biggest_blob().get_area() > 10000:
+            ev3.Sound.beep().wait()
+        time.sleep(0.1)
 
 
 main()

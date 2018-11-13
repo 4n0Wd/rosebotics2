@@ -19,6 +19,7 @@ def grab_things():
     robot.drive_system.go_straight_inches(5)
     robot.arm.move_arm_to_position(300)
     robot.drive_system.go_straight_inches(20)
+    robot.arm.calibrate()
 
 
 def gun_shots():

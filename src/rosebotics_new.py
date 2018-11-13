@@ -139,7 +139,7 @@ class Snatch3rRobot(object):
         self.brick_button_sensor = BrickButtonSensor()
 
         self.drive_system = DriveSystem(left_wheel_port, right_wheel_port)
-        # self.arm = ArmAndClaw(self.touch_sensor, arm_port)
+        self.arm = ArmAndClaw(self.touch_sensor, arm_port)
 
 
 class DriveSystem(object):
@@ -740,12 +740,9 @@ class ArmAndClaw(object):
                 self.motor.stop_spinning()
                 break
         value = self.motor.get_degrees_spun()
-        print('123')
         self.motor.start_spinning(-100)
         while True:
-            print(value, self.motor.get_degrees_spun())
             if abs(self.motor.get_degrees_spun() - value) > 5112:
-                print('321')
                 self.motor.stop_spinning()
                 break
         self.position = 0

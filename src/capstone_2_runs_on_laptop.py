@@ -45,6 +45,7 @@ Authors:  David Mutchler, his colleagues, and Hanyu Yang.
 # ------------------------------------------------------------------------------
 
 import tkinter
+from tkinter import *
 from tkinter import ttk
 import mqtt_remote_method_calls as com
 
@@ -68,10 +69,10 @@ def main():
 
 def setup_gui(root_window, mqtt_client):
     """ Constructs and sets up widgets on the given window. """
-    frame = ttk.Frame(root_window, padding=10)
+    frame = ttk.Frame(root_window, padding=20)
     frame.grid()
 
-    tone_entry_box = ttk.Entry(frame)
+    oct = IntVar()
     c_button = ttk.Button(frame, text="C")
     csh_button = ttk.Button(frame, text="C#")
     d_button = ttk.Button(frame, text="D")
@@ -84,8 +85,19 @@ def setup_gui(root_window, mqtt_client):
     a_button = ttk.Button(frame, text="A")
     ash_button = ttk.Button(frame, text="A#")
     b_button = ttk.Button(frame, text="B")
+    three = ttk.Radiobutton(frame, text='Octave: 3', variable=oct, value=3)
+    four = ttk.Radiobutton(frame, text='Octave: 4', variable=oct, value=4)
+    five = ttk.Radiobutton(frame, text='Octave: 5', variable=oct, value=5)
+    six = ttk.Radiobutton(frame, text='Octave: 6', variable=oct, value=6)
+    seven = ttk.Radiobutton(frame, text='Octave: 7', variable=oct, value=7)
+    eight = ttk.Radiobutton(frame, text='Octave: 8', variable=oct, value=8)
 
-    tone_entry_box.grid()
+    three.grid(row=0, column=0, sticky=W)
+    four.grid(row=0, column=1, sticky=W)
+    five.grid(row=1, column=0, sticky=W)
+    six.grid(row=1, column=1, sticky=W)
+    seven.grid(row=2, column=0, sticky=W)
+    eight.grid(row=2, column=1, sticky=W)
     c_button.grid()
     csh_button.grid()
     d_button.grid()
@@ -99,78 +111,78 @@ def setup_gui(root_window, mqtt_client):
     ash_button.grid()
     b_button.grid()
 
-    c_button['command'] = lambda: play_c(tone_entry_box, mqtt_client)
-    csh_button['command'] = lambda: play_csh(tone_entry_box, mqtt_client)
-    d_button['command'] = lambda: play_d(tone_entry_box, mqtt_client)
-    dsh_button['command'] = lambda: play_dsh(tone_entry_box, mqtt_client)
-    e_button['command'] = lambda: play_e(tone_entry_box, mqtt_client)
-    f_button['command'] = lambda: play_f(tone_entry_box, mqtt_client)
-    fsh_button['command'] = lambda: play_fsh(tone_entry_box, mqtt_client)
-    g_button['command'] = lambda: play_g(tone_entry_box, mqtt_client)
-    gsh_button['command'] = lambda: play_gsh(tone_entry_box, mqtt_client)
-    a_button['command'] = lambda: play_a(tone_entry_box, mqtt_client)
-    ash_button['command'] = lambda: play_ash(tone_entry_box, mqtt_client)
-    b_button['command'] = lambda: play_b(tone_entry_box, mqtt_client)
+    c_button['command'] = lambda: play_c(oct, mqtt_client)
+    csh_button['command'] = lambda: play_csh(oct, mqtt_client)
+    d_button['command'] = lambda: play_d(oct, mqtt_client)
+    dsh_button['command'] = lambda: play_dsh(oct, mqtt_client)
+    e_button['command'] = lambda: play_e(oct, mqtt_client)
+    f_button['command'] = lambda: play_f(oct, mqtt_client)
+    fsh_button['command'] = lambda: play_fsh(oct, mqtt_client)
+    g_button['command'] = lambda: play_g(oct, mqtt_client)
+    gsh_button['command'] = lambda: play_gsh(oct, mqtt_client)
+    a_button['command'] = lambda: play_a(oct, mqtt_client)
+    ash_button['command'] = lambda: play_ash(oct, mqtt_client)
+    b_button['command'] = lambda: play_b(oct, mqtt_client)
 
 
-def play_c(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_c', [degree])
+def play_c(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_c', [octave])
 
 
-def play_csh(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_csh', [degree])
+def play_csh(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_csh', [octave])
 
 
-def play_d(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_d', [degree])
+def play_d(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_d', [octave])
 
 
-def play_dsh(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_dsh', [degree])
+def play_dsh(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_dsh', [octave])
 
 
-def play_e(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_e', [degree])
+def play_e(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_e', [octave])
 
 
-def play_f(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_f', [degree])
+def play_f(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_f', [octave])
 
 
-def play_fsh(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_fsh', [degree])
+def play_fsh(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_fsh', [octave])
 
 
-def play_g(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_g', [degree])
+def play_g(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_g', [octave])
 
 
-def play_gsh(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_gsh', [degree])
+def play_gsh(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_gsh', [octave])
 
 
-def play_a(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_a', [degree])
+def play_a(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_a', [octave])
 
 
-def play_ash(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_ash', [degree])
+def play_ash(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_ash', [octave])
 
 
-def play_b(entry_box, mqtt_client):
-    degree = int(entry_box.get())
-    mqtt_client.send_message('tone_b', [degree])
+def play_b(oct, mqtt_client):
+    octave = oct.get()
+    mqtt_client.send_message('tone_b', [octave])
 
 
 main()

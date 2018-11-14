@@ -130,6 +130,8 @@ def setup_gui(root_window, mqtt_client):
     ash_button['command'] = lambda: play_ash(oct, mqtt_client)
     b_button['command'] = lambda: play_b(oct, mqtt_client)
     go_button['command'] = lambda: go_forward(mqtt_client)
+    stop_button['command'] = lambda: stop(mqtt_client)
+    back_button['command'] = lambda: go_backward(mqtt_client)
 
 
 def play_c(oct, mqtt_client):
@@ -192,8 +194,17 @@ def play_b(oct, mqtt_client):
     mqtt_client.send_message('tone_b', [octave])
 
 
+
 def go_forward(mqtt_client):
     mqtt_client.send_message('go_forward')
+
+
+def stop(mqtt_client):
+    mqtt_client.send_message('stop')
+
+
+def go_backward(mqtt_client):
+    mqtt_client.send_message('go_backward')
 
 
 main()

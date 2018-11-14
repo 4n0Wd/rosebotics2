@@ -153,4 +153,13 @@ class RemoteControlEtc(object):
             tone = 30.895 * (2.718 ** (0.6926 * degree))
             ev3.Sound.tone(tone, 200)
 
+    def go_forward(self):
+        self.robot.drive_system.start_moving(50, 50)
+
+    def go_backward(self):
+        self.robot.drive_system.start_moving(-50, -50)
+
+    def stop(self):
+        self.robot.drive_system.stop_moving()
+
 main()

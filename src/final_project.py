@@ -13,7 +13,7 @@ def main():
     # gun_shots()
     # grab_things()
     follow_me()
-
+    # haoyijuzuishuai
 
 def grab_things():
     robot = rb.Snatch3rRobot()

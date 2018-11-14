@@ -91,6 +91,9 @@ def setup_gui(root_window, mqtt_client):
     six = ttk.Radiobutton(frame, text='Octave: 6', variable=oct, value=6)
     seven = ttk.Radiobutton(frame, text='Octave: 7', variable=oct, value=7)
     eight = ttk.Radiobutton(frame, text='Octave: 8', variable=oct, value=8)
+    go_button = ttk.Button(frame, text="↑")
+    back_button = ttk.Button(frame, text="↓")
+    stop_button = ttk.Button(frame, text="-")
 
     three.grid(row=0, column=0, sticky=W)
     four.grid(row=0, column=1, sticky=W)
@@ -98,18 +101,21 @@ def setup_gui(root_window, mqtt_client):
     six.grid(row=1, column=1, sticky=W)
     seven.grid(row=2, column=0, sticky=W)
     eight.grid(row=2, column=1, sticky=W)
-    c_button.grid()
-    csh_button.grid()
-    d_button.grid()
-    dsh_button.grid()
-    e_button.grid()
-    f_button.grid()
-    fsh_button.grid()
-    g_button.grid()
-    gsh_button.grid()
-    a_button.grid()
-    ash_button.grid()
-    b_button.grid()
+    c_button.grid(row=3)
+    csh_button.grid(row=4)
+    d_button.grid(row=5)
+    dsh_button.grid(row=6)
+    e_button.grid(row=7)
+    f_button.grid(row=8)
+    fsh_button.grid(row=9)
+    g_button.grid(row=10)
+    gsh_button.grid(row=11)
+    a_button.grid(row=12)
+    ash_button.grid(row=13)
+    b_button.grid(row=14)
+    go_button.grid(row=7, column=1)
+    stop_button.grid(row=8, column=1)
+    back_button.grid(row=9, column=1)
 
     c_button['command'] = lambda: play_c(oct, mqtt_client)
     csh_button['command'] = lambda: play_csh(oct, mqtt_client)
@@ -123,6 +129,7 @@ def setup_gui(root_window, mqtt_client):
     a_button['command'] = lambda: play_a(oct, mqtt_client)
     ash_button['command'] = lambda: play_ash(oct, mqtt_client)
     b_button['command'] = lambda: play_b(oct, mqtt_client)
+    go_button['command'] = lambda: go_forward(mqtt_client)
 
 
 def play_c(oct, mqtt_client):
@@ -183,6 +190,10 @@ def play_ash(oct, mqtt_client):
 def play_b(oct, mqtt_client):
     octave = oct.get()
     mqtt_client.send_message('tone_b', [octave])
+
+
+def go_forward(mqtt_client):
+    mqtt_client.send_message('go_forward')
 
 
 main()

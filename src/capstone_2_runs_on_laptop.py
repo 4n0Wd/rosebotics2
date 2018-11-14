@@ -94,6 +94,8 @@ def setup_gui(root_window, mqtt_client):
     go_button = ttk.Button(frame, text="↑")
     back_button = ttk.Button(frame, text="↓")
     stop_button = ttk.Button(frame, text="-")
+    left_button = ttk.Button(frame, text="←")
+    right_button = ttk.Button(frame, text="→")
 
     three.grid(row=0, column=0, sticky=W)
     four.grid(row=0, column=1, sticky=W)
@@ -113,9 +115,11 @@ def setup_gui(root_window, mqtt_client):
     a_button.grid(row=12)
     ash_button.grid(row=13)
     b_button.grid(row=14)
-    go_button.grid(row=7, column=1)
-    stop_button.grid(row=8, column=1)
-    back_button.grid(row=9, column=1)
+    go_button.grid(row=7, column=2)
+    stop_button.grid(row=8, column=2)
+    back_button.grid(row=9, column=2)
+    left_button.grid(row=8, column=1)
+    right_button.grid(row=8, column=3)
 
     c_button['command'] = lambda: play_c(oct, mqtt_client)
     csh_button['command'] = lambda: play_csh(oct, mqtt_client)
@@ -132,6 +136,8 @@ def setup_gui(root_window, mqtt_client):
     go_button['command'] = lambda: go_forward(mqtt_client)
     stop_button['command'] = lambda: stop(mqtt_client)
     back_button['command'] = lambda: go_backward(mqtt_client)
+    left_button['command'] = lambda: turn_left(mqtt_client)
+    right_button['command'] = lambda: turn_right(mqtt_client)
 
 
 def play_c(oct, mqtt_client):
@@ -194,7 +200,6 @@ def play_b(oct, mqtt_client):
     mqtt_client.send_message('tone_b', [octave])
 
 
-
 def go_forward(mqtt_client):
     mqtt_client.send_message('go_forward')
 
@@ -205,6 +210,14 @@ def stop(mqtt_client):
 
 def go_backward(mqtt_client):
     mqtt_client.send_message('go_backward')
+
+
+def turn_left(mqtt_client):
+    mqtt_client.send_message('turn_left')
+
+
+def turn_right(mqtt_client):
+    mqtt_client.send_message('turn_right')
 
 
 main()

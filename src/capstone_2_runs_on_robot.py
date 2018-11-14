@@ -162,4 +162,11 @@ class RemoteControlEtc(object):
     def stop(self):
         self.robot.drive_system.stop_moving()
 
+    def turn_left(self):
+        self.robot.drive_system.spin_in_place_degrees(-90)
+
+    def turn_right(self):
+        self.robot.drive_system.spin_in_place_degrees(90)
+
+
 main()

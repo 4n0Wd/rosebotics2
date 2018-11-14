@@ -6,12 +6,13 @@
 import rosebotics_new as rb
 import ev3dev.ev3 as ev3
 import time
-
+import math
 
 def main():
     """ Runs YOUR specific part of the project """
     # gun_shots()
-    grab_things()
+    # grab_things()
+    follow_me()
 
 
 def grab_things():
@@ -29,6 +30,25 @@ def gun_shots():
     ev3.Sound.play('ak47_clipout.wav')
     time.sleep(0.8)
     ev3.Sound.play('ak47_clipin.wav')
+
+
+def follow_me():
+    robot = rb.Snatch3rRobot()
+    while True:
+        print(robot.beacon_sensor.get_heading_and_distance_to_beacon())
+        if robot.beacon_sensor.get_distance_to_beacon() > 20:
+            if robot.beacon_sensor.get_heading_to_beacon() != 0:
+                sign = abs(robot.beacon_sensor.get_heading_to_beacon())/robot.beacon_sensor.get_heading_to_beacon()
+            else:
+                sign = 0
+            x = abs(robot.beacon_sensor.get_heading_to_beacon())
+            y = robot.beacon_sensor.get_distance_to_beacon()
+            if y != 0:
+                angle = sign * math.atan(x/y)
+            else:
+                angle = 0
+            robot.drive_system.go_straight_inches(5)
+            robot.drive_system.spin_in_place_degrees(angle * 180 / 3.1415926)
 
 
 main()

@@ -133,13 +133,13 @@ class Snatch3rRobot(object):
         # self.camera = Camera(camera_port)
 
         # self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
-        # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
-        self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
+        self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
+        # self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
 
         self.brick_button_sensor = BrickButtonSensor()
 
         self.drive_system = DriveSystem(left_wheel_port, right_wheel_port)
-        self.arm = ArmAndClaw(self.touch_sensor, arm_port)
+        # self.arm = ArmAndClaw(self.touch_sensor, arm_port)
 
 
 class DriveSystem(object):
@@ -243,8 +243,10 @@ class DriveSystem(object):
         # DONE:   Assume that the conversion is linear with respect to speed.
         # DONE: Don't forget that the Wheel object's position begins wherever
         # DONE:   it last was, not necessarily 0.
-
-        sign = degrees / abs(degrees)
+        if degrees != 0:
+            sign = degrees / abs(degrees)
+        else:
+            sign = 0
         count = self.left_wheel.get_degrees_spun()
         while True:
             self.left_wheel.start_spinning(sign * duty_cycle_percent)

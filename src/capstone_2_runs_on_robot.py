@@ -70,51 +70,87 @@ class RemoteControlEtc(object):
         self.robot = robot
 
     def tone_c(self, degree):
-        tone = 16.401 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 16.401 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_csh(self, degree):
-        tone = 17.406 * (2.718 ** (0.6922 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 17.406 * (2.718 ** (0.6922 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_d(self, degree):
-        tone = 18.403 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 18.403 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_dsh(self, degree):
-        tone = 19.445 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 19.445 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_e(self, degree):
-        tone = 20.602 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 20.602 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_f(self, degree):
-        tone = 21.827 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 21.827 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_fsh(self, degree):
-        tone = 23.125 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 23.125 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_g(self, degree):
-        tone = 24.500 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 24.500 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_gsh(self, degree):
-        tone = 25.957 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 25.957 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_a(self, degree):
-        tone = 27.500 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 27.500 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_ash(self, degree):
-        tone = 29.135 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 29.135 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
     def tone_b(self, degree):
-        tone = 30.895 * (2.718 ** (0.6926 * degree))
-        ev3.Sound.tone(tone, 200)
+        if degree == 0:
+            ev3.Sound.speak('Please select an octave.')
+        else:
+            tone = 30.895 * (2.718 ** (0.6926 * degree))
+            ev3.Sound.tone(tone, 200)
 
 main()

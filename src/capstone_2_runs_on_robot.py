@@ -153,11 +153,11 @@ class RemoteControlEtc(object):
             tone = 30.895 * (2.718 ** (0.6926 * degree))
             ev3.Sound.tone(tone, 200)
 
-    def go_forward(self):
-        self.robot.drive_system.start_moving(50, 50)
+    def go_forward(self, speed):
+        self.robot.drive_system.start_moving(speed, speed)
 
-    def go_backward(self):
-        self.robot.drive_system.start_moving(-50, -50)
+    def go_backward(self, speed):
+        self.robot.drive_system.start_moving(-speed, -speed)
 
     def stop(self):
         self.robot.drive_system.stop_moving()
@@ -167,6 +167,13 @@ class RemoteControlEtc(object):
 
     def turn_right(self):
         self.robot.drive_system.spin_in_place_degrees(90)
+
+    def towards_the_wall(self, speed):
+        self.robot.drive_system.start_moving(speed, speed)
+        while True:
+            print(self.robot.proximity_sensor.get_distance_to_nearest_object())
+            if self.robot.proximity_sensor.get_distance_to_nearest_object() < 20:
+                self.robot.drive_system.stop_moving()
 
 
 main()

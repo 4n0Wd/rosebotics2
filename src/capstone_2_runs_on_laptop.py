@@ -96,6 +96,10 @@ def setup_gui(root_window, mqtt_client):
     stop_button = ttk.Button(frame, text="-")
     left_button = ttk.Button(frame, text="←")
     right_button = ttk.Button(frame, text="→")
+    speed_entry_box = ttk.Entry(frame)
+    speed_label = ttk.Label(frame, text="Enter Speed:")
+    name = ttk.Label(frame, text="THE MUSIC CAR CONTROLLER")
+    wall_button = ttk.Button(frame, text="Straight Ahead!")
 
     three.grid(row=0, column=0, sticky=W)
     four.grid(row=0, column=1, sticky=W)
@@ -120,6 +124,10 @@ def setup_gui(root_window, mqtt_client):
     back_button.grid(row=9, column=2)
     left_button.grid(row=8, column=1)
     right_button.grid(row=8, column=3)
+    speed_entry_box.grid(row=6, column=2)
+    speed_label.grid(row=5, column=2)
+    name.grid(row=15, column=2)
+    wall_button.grid(row=10, column=2)
 
     c_button['command'] = lambda: play_c(oct, mqtt_client)
     csh_button['command'] = lambda: play_csh(oct, mqtt_client)
@@ -133,11 +141,12 @@ def setup_gui(root_window, mqtt_client):
     a_button['command'] = lambda: play_a(oct, mqtt_client)
     ash_button['command'] = lambda: play_ash(oct, mqtt_client)
     b_button['command'] = lambda: play_b(oct, mqtt_client)
-    go_button['command'] = lambda: go_forward(mqtt_client)
+    go_button['command'] = lambda: go_forward(speed_entry_box, mqtt_client)
     stop_button['command'] = lambda: stop(mqtt_client)
-    back_button['command'] = lambda: go_backward(mqtt_client)
+    back_button['command'] = lambda: go_backward(speed_entry_box, mqtt_client)
     left_button['command'] = lambda: turn_left(mqtt_client)
     right_button['command'] = lambda: turn_right(mqtt_client)
+    wall_button['command'] = lambda: to_wall(speed_entry_box, mqtt_client)
 
 
 def play_c(oct, mqtt_client):
@@ -200,16 +209,18 @@ def play_b(oct, mqtt_client):
     mqtt_client.send_message('tone_b', [octave])
 
 
-def go_forward(mqtt_client):
-    mqtt_client.send_message('go_forward')
+def go_forward(entry_box, mqtt_client):
+    speed = int(entry_box.get())
+    mqtt_client.send_message('go_forward', [speed])
 
 
 def stop(mqtt_client):
     mqtt_client.send_message('stop')
 
 
-def go_backward(mqtt_client):
-    mqtt_client.send_message('go_backward')
+def go_backward(entry_box, mqtt_client):
+    speed = int(entry_box.get())
+    mqtt_client.send_message('go_backward', [speed])
 
 
 def turn_left(mqtt_client):
@@ -219,5 +230,9 @@ def turn_left(mqtt_client):
 def turn_right(mqtt_client):
     mqtt_client.send_message('turn_right')
 
+
+def to_wall(entry_box, mqtt_client):
+    speed = int(entry_box.get())
+    mqtt_client.send_message('towards_the_wall', [speed])
 
 main()
